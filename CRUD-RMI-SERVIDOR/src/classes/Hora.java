@@ -1,5 +1,6 @@
 package classes;
 
+import dao.HoraDAO;
 import interfaces.InterfaceHora;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -32,4 +33,7 @@ public class Hora extends UnicastRemoteObject implements InterfaceHora {
         return minutos;
     }
     
+    public void insert(){
+        HoraDAO.insert(this);
+    }
 }

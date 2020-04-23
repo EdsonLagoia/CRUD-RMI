@@ -3,8 +3,12 @@ package views;
 import interfaces.InterfaceHora;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -47,12 +51,18 @@ public class adicionarHora extends JPanel implements ActionListener {
             horaRemoto.setHoras(horas);
             horaRemoto.setMinutos(minutos);
             
+            horaRemoto.insert();
+            
             String texto_retorno = horaRemoto.getHoras()
                     + ":" + horaRemoto.getMinutos();
             
             JOptionPane.showMessageDialog(null, texto_retorno, "Horario de Entrega", JOptionPane.INFORMATION_MESSAGE);
         } catch(RemoteException re) {
             JOptionPane.showMessageDialog(null, "Erro Remoto:" + re.toString(), "Erro Remoto", JOptionPane.WARNING_MESSAGE);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(adicionarHora.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(adicionarHora.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

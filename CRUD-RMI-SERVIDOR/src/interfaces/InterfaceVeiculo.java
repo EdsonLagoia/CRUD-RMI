@@ -10,4 +10,5 @@ public interface InterfaceVeiculo extends Remote {
     public String getMarca() throws RemoteException;
     public String getModelo() throws RemoteException;
     public String getPlaca() throws RemoteException;
+    public void insert() throws RemoteException;
 }

@@ -3,8 +3,12 @@ package views;
 import interfaces.InterfaceVeiculo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -55,6 +59,8 @@ public class adicionarVeiculo extends JPanel implements ActionListener {
             veiculoRemoto.setModelo(modelo);
             veiculoRemoto.setPlaca(placa);
             
+            veiculoRemoto.insert();
+            
             String texto_retorno = veiculoRemoto.getMarca()
                     + "\n" + veiculoRemoto.getModelo()
                     + "\n" + veiculoRemoto.getPlaca();
@@ -62,6 +68,10 @@ public class adicionarVeiculo extends JPanel implements ActionListener {
             JOptionPane.showMessageDialog(null, texto_retorno, "Veículo da Entrega", JOptionPane.INFORMATION_MESSAGE);
         } catch(RemoteException re) {
             JOptionPane.showMessageDialog(null, "Erro Remoto:" + re.toString(), "Erro Remoto", JOptionPane.WARNING_MESSAGE);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(adicionarVeiculo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(adicionarVeiculo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

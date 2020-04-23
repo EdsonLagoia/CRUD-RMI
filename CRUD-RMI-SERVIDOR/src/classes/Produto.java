@@ -1,5 +1,6 @@
 package classes;
 
+import dao.ProdutoDAO;
 import interfaces.InterfaceProduto;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -41,5 +42,9 @@ public class Produto extends UnicastRemoteObject implements InterfaceProduto {
     @Override
     public int getQuantidade() {
         return quantidade;
+    }
+    
+    public void insert(){
+        ProdutoDAO.insert(this);
     }
 }

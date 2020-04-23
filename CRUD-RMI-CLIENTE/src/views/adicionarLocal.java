@@ -3,8 +3,12 @@ package views;
 import interfaces.InterfaceLocal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -47,12 +51,18 @@ public class adicionarLocal extends JPanel implements ActionListener {
             localRemoto.setCliente(cliente);
             localRemoto.setEndereco(endereco);
             
+            localRemoto.insert();
+            
             String texto_retorno = "\n Cliente: " + localRemoto.getCliente()
                     + "\n Endereço: " + localRemoto.getEndereco();
             
             JOptionPane.showMessageDialog(null, texto_retorno, "Cliente", JOptionPane.INFORMATION_MESSAGE);
         } catch(RemoteException re) {
             JOptionPane.showMessageDialog(null, "Erro Remoto:" + re.toString(), "Erro Remoto", JOptionPane.WARNING_MESSAGE);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(adicionarLocal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(adicionarLocal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

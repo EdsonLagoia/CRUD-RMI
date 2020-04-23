@@ -1,5 +1,6 @@
 package classes;
 
+import dao.DataDAO;
 import interfaces.InterfaceData;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -41,5 +42,9 @@ public class Data extends UnicastRemoteObject implements InterfaceData {
     @Override
     public int getAno() {
         return ano;
+    }
+    
+    public void insert(){
+        DataDAO.insert(this);
     }
 }

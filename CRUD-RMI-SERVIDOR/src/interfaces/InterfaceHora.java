@@ -8,4 +8,5 @@ public interface InterfaceHora extends Remote {
     public void setMinutos(int minutos) throws RemoteException;
     public int getHoras() throws RemoteException;
     public int getMinutos() throws RemoteException;
+    public void insert() throws RemoteException;
 }

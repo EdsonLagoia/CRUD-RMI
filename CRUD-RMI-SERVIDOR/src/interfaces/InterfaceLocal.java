@@ -8,4 +8,5 @@ public interface InterfaceLocal extends Remote {
     public void setEndereco(String endereco) throws RemoteException;
     public String getCliente() throws RemoteException;
     public String getEndereco() throws RemoteException;
+    public void insert() throws RemoteException;
 }

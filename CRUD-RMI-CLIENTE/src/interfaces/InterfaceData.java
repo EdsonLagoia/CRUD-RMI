@@ -10,4 +10,5 @@ public interface InterfaceData extends Remote {
     public int getDia() throws RemoteException;
     public int getMes() throws RemoteException;
     public int getAno() throws RemoteException;
+    public void insert() throws RemoteException;
 }

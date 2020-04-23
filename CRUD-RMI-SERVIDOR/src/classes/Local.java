@@ -1,5 +1,6 @@
 package classes;
 
+import dao.LocalDAO;
 import interfaces.InterfaceLocal;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -30,5 +31,9 @@ public class Local extends UnicastRemoteObject implements InterfaceLocal {
     @Override
     public String getEndereco() {
         return endereco;
+    }
+    
+    public void insert(){
+        LocalDAO.insert(this);
     }
 }

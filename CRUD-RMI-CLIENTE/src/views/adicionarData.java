@@ -3,8 +3,12 @@ package views;
 import interfaces.InterfaceData;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -55,6 +59,8 @@ public class adicionarData extends JPanel implements ActionListener {
             dataRemoto.setMes(mes);
             dataRemoto.setAno(ano);
             
+            dataRemoto.insert();
+            
             String texto_retorno = dataRemoto.getDia()
                     + " / " + dataRemoto.getMes()
                     + " / " + dataRemoto.getAno();
@@ -62,6 +68,10 @@ public class adicionarData extends JPanel implements ActionListener {
             JOptionPane.showMessageDialog(null, texto_retorno, "Data de Entrega", JOptionPane.INFORMATION_MESSAGE);
         } catch(RemoteException re) {
             JOptionPane.showMessageDialog(null, "Erro Remoto:" + re.toString(), "Erro Remoto", JOptionPane.WARNING_MESSAGE);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(adicionarData.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(adicionarData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

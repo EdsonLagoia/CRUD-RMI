@@ -1,5 +1,6 @@
 package classes;
 
+import dao.VeiculoDAO;
 import interfaces.InterfaceVeiculo;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -41,5 +42,9 @@ public class Veiculo extends UnicastRemoteObject implements InterfaceVeiculo {
     @Override
     public String getPlaca() {
         return placa;
+    }
+    
+    public void insert(){
+        VeiculoDAO.insert(this);
     }
 }
