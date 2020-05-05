@@ -4,11 +4,12 @@ import dao.VeiculoDAO;
 import interfaces.InterfaceVeiculo;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 public class Veiculo extends UnicastRemoteObject implements InterfaceVeiculo {
-    String marca;
-    String modelo;
-    String placa;
+    private String marca;
+    private String modelo;
+    private String placa;
 
     public Veiculo() throws RemoteException {
         System.out.println("A classe Veiculo está disponível remotamente");
@@ -44,7 +45,13 @@ public class Veiculo extends UnicastRemoteObject implements InterfaceVeiculo {
         return placa;
     }
     
+    @Override
     public void insert(){
         VeiculoDAO.insert(this);
+    }
+
+    @Override
+    public ArrayList<Veiculo> select() {
+        return VeiculoDAO.select();
     }
 }

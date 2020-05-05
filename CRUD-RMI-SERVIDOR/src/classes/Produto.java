@@ -4,11 +4,12 @@ import dao.ProdutoDAO;
 import interfaces.InterfaceProduto;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 public class Produto extends UnicastRemoteObject implements InterfaceProduto {
-    public String descricao;
-    public double preco;
-    public int quantidade;
+    private String descricao;
+    private double preco;
+    private int quantidade;
     
     public Produto() throws RemoteException {
         System.out.println("A classe Produto está disponível remotamente");
@@ -47,4 +48,10 @@ public class Produto extends UnicastRemoteObject implements InterfaceProduto {
     public void insert(){
         ProdutoDAO.insert(this);
     }
+    
+    @Override
+    public ArrayList<Produto> select(){
+        return ProdutoDAO.select();
+    }
+
 }

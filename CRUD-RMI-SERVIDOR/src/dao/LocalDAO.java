@@ -3,6 +3,8 @@ package dao;
 import classes.Local;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class LocalDAO {
     public static void insert(Local local){
@@ -23,8 +25,30 @@ public class LocalDAO {
         
     }
     
-    public void select(){
+    public static ArrayList<Local> select(){
         
+        ArrayList<Local> locais = new ArrayList<>();
+        
+        String sql = "SELECT * FROM local";
+        
+        try{
+            Connection conexao = ConexaoDB.retornaConexao();
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            ResultSet registro = stmt.executeQuery();
+            
+            while (registro.next()){
+                Local temporario = new Local();
+                    temporario.setCliente(registro.getString("cliente"));
+                    temporario.setEndereco(registro.getString("endereco"));
+                locais.add(temporario);
+            }
+            
+            return locais;
+        } catch(Exception e){
+            System.err.println("Erro na Listagem de Local: " + e.toString());
+        }
+        
+        return null;
     }
     
     public void delete(){

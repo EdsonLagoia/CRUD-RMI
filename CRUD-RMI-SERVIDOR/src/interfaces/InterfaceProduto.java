@@ -1,7 +1,9 @@
 package interfaces;
 
+import classes.Produto;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public interface InterfaceProduto extends Remote {
     public void setDescricao(String descricao) throws RemoteException;
@@ -11,4 +13,5 @@ public interface InterfaceProduto extends Remote {
     public double getPreco() throws RemoteException;
     public int getQuantidade() throws RemoteException;
     public void insert() throws RemoteException;
+    public ArrayList<Produto> select() throws RemoteException;
 }

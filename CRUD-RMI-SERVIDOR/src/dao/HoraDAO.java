@@ -3,6 +3,8 @@ package dao;
 import classes.Hora;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class HoraDAO {
     public static void insert(Hora hora){
@@ -23,9 +25,32 @@ public class HoraDAO {
         
     }
     
-    public void select(){
+    public static ArrayList<Hora> select(){
         
+        ArrayList<Hora> horas = new ArrayList<>();
+        
+        String sql = "SELECT * FROM hora";
+        
+        try{
+            Connection conexao = ConexaoDB.retornaConexao();
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            ResultSet registro = stmt.executeQuery();
+            
+            while (registro.next()){
+                Hora temporario = new Hora();
+                    temporario.setHoras(registro.getInt("horas"));
+                    temporario.setMinutos(registro.getInt("minutos"));
+                horas.add(temporario);
+            }
+            
+            return horas;
+        } catch(Exception e){
+            System.err.println("Erro na Listagem de Hora: " + e.toString());
+        }
+        
+        return null;
     }
+
     
     public void delete(){
         

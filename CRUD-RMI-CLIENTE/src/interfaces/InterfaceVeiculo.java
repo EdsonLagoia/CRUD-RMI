@@ -2,6 +2,7 @@ package interfaces;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public interface InterfaceVeiculo extends Remote {
     public void setMarca(String marca) throws RemoteException;
@@ -11,4 +12,5 @@ public interface InterfaceVeiculo extends Remote {
     public String getModelo() throws RemoteException;
     public String getPlaca() throws RemoteException;
     public void insert() throws RemoteException;
+    public ArrayList<InterfaceVeiculo> select() throws RemoteException;
 }

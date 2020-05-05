@@ -4,10 +4,11 @@ import dao.HoraDAO;
 import interfaces.InterfaceHora;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 public class Hora extends UnicastRemoteObject implements InterfaceHora {
-    public int horas;
-    public int minutos;
+    private int horas;
+    private int minutos;
     
     public Hora() throws RemoteException {
         System.out.println("A classe Data está disponível remotamente");
@@ -33,7 +34,13 @@ public class Hora extends UnicastRemoteObject implements InterfaceHora {
         return minutos;
     }
     
+    @Override
     public void insert(){
         HoraDAO.insert(this);
+    }
+
+    @Override
+    public ArrayList<Hora> select() {
+        return HoraDAO.select();
     }
 }

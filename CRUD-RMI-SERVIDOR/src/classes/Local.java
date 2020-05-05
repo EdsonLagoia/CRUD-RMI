@@ -4,10 +4,11 @@ import dao.LocalDAO;
 import interfaces.InterfaceLocal;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 public class Local extends UnicastRemoteObject implements InterfaceLocal {
-    String cliente;
-    String endereco;
+    private String cliente;
+    private String endereco;
     
     public Local() throws RemoteException{
         System.out.println("A classe Local está disponível remotamente");
@@ -35,5 +36,10 @@ public class Local extends UnicastRemoteObject implements InterfaceLocal {
     
     public void insert(){
         LocalDAO.insert(this);
+    }
+
+    @Override
+    public ArrayList<Local> select() {
+        return LocalDAO.select();
     }
 }

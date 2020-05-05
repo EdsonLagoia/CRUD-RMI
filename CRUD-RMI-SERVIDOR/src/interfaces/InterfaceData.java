@@ -1,7 +1,9 @@
 package interfaces;
 
+import classes.Data;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public interface InterfaceData extends Remote {
     public void setDia(int dia) throws RemoteException;
@@ -11,4 +13,5 @@ public interface InterfaceData extends Remote {
     public int getMes() throws RemoteException;
     public int getAno() throws RemoteException;
     public void insert() throws RemoteException;
+    public ArrayList<Data> select() throws RemoteException;
 }

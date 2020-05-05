@@ -3,6 +3,8 @@ package dao;
 import classes.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class DataDAO {
     public static void insert(Data data){
@@ -25,8 +27,31 @@ public class DataDAO {
         
     }
     
-    public void select(){
+    public static ArrayList<Data> select(){
         
+        ArrayList<Data> datas = new ArrayList<>();
+        
+        String sql = "SELECT * FROM data";
+        
+        try{
+            Connection conexao = ConexaoDB.retornaConexao();
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            ResultSet registro = stmt.executeQuery();
+            
+            while (registro.next()){
+                Data temporario = new Data();
+                    temporario.setDia(registro.getInt("dia"));
+                    temporario.setMes(registro.getInt("mes"));
+                    temporario.setAno(registro.getInt("ano"));
+                datas.add(temporario);
+            }
+            
+            return datas;
+        } catch(Exception e){
+            System.err.println("Erro na Listagem de Data: " + e.toString());
+        }
+        
+        return null;
     }
     
     public void delete(){

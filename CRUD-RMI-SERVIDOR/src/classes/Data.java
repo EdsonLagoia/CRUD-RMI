@@ -4,11 +4,12 @@ import dao.DataDAO;
 import interfaces.InterfaceData;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 public class Data extends UnicastRemoteObject implements InterfaceData {
-    public int dia;
-    public int mes;
-    public int ano;
+    private int dia;
+    private int mes;
+    private int ano;
     
     public Data() throws RemoteException {
         System.out.println("A classe Data está disponível remotamente");
@@ -44,7 +45,13 @@ public class Data extends UnicastRemoteObject implements InterfaceData {
         return ano;
     }
     
+    @Override
     public void insert(){
         DataDAO.insert(this);
+    }
+
+    @Override
+    public ArrayList<Data> select() {
+        return DataDAO.select();
     }
 }
