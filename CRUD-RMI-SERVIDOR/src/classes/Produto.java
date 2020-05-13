@@ -7,12 +7,18 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 public class Produto extends UnicastRemoteObject implements InterfaceProduto {
+    private int id;
     private String descricao;
     private double preco;
     private int quantidade;
     
     public Produto() throws RemoteException {
         System.out.println("A classe Produto está disponível remotamente");
+    }
+    
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
     
     @Override
@@ -31,6 +37,11 @@ public class Produto extends UnicastRemoteObject implements InterfaceProduto {
     }
         
     @Override
+    public int getId() {
+        return id;
+    }
+    
+    @Override
     public String getDescricao() {
         return descricao;
     }
@@ -45,6 +56,7 @@ public class Produto extends UnicastRemoteObject implements InterfaceProduto {
         return quantidade;
     }
     
+    @Override
     public void insert(){
         ProdutoDAO.insert(this);
     }
@@ -52,6 +64,11 @@ public class Produto extends UnicastRemoteObject implements InterfaceProduto {
     @Override
     public ArrayList<Produto> select(){
         return ProdutoDAO.select();
+    }
+    
+    @Override
+    public void delete(int id){
+        ProdutoDAO.delete(id = getId());
     }
 
 }

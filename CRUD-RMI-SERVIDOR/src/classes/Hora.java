@@ -7,11 +7,17 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 public class Hora extends UnicastRemoteObject implements InterfaceHora {
+    private int id;
     private int horas;
     private int minutos;
     
     public Hora() throws RemoteException {
         System.out.println("A classe Data está disponível remotamente");
+    }
+    
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
     
     @Override
@@ -22,6 +28,11 @@ public class Hora extends UnicastRemoteObject implements InterfaceHora {
     @Override
     public void setMinutos(int minutos) {
         this.minutos = minutos;
+    }
+    
+    @Override
+    public int getId() {
+        return id;
     }
 
     @Override
@@ -42,5 +53,10 @@ public class Hora extends UnicastRemoteObject implements InterfaceHora {
     @Override
     public ArrayList<Hora> select() {
         return HoraDAO.select();
+    }
+    
+    @Override
+    public void delete(int id){
+        HoraDAO.delete(id);
     }
 }

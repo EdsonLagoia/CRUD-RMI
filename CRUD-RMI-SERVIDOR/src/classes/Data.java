@@ -7,6 +7,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 public class Data extends UnicastRemoteObject implements InterfaceData {
+    private int id;
     private int dia;
     private int mes;
     private int ano;
@@ -15,6 +16,11 @@ public class Data extends UnicastRemoteObject implements InterfaceData {
         System.out.println("A classe Data está disponível remotamente");
     }
 
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     @Override
     public void setDia(int dia) {
         this.dia = dia;
@@ -30,6 +36,11 @@ public class Data extends UnicastRemoteObject implements InterfaceData {
         this.ano = ano;
     }
 
+    @Override
+    public int getId() {
+        return id;
+    }
+    
     @Override
     public int getDia() {
         return dia;
@@ -51,7 +62,12 @@ public class Data extends UnicastRemoteObject implements InterfaceData {
     }
 
     @Override
-    public ArrayList<Data> select() {
+    public ArrayList<Data> select(){
         return DataDAO.select();
+    }
+
+   @Override
+    public void delete(int id){
+        DataDAO.delete(id);
     }
 }

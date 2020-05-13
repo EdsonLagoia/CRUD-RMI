@@ -18,12 +18,8 @@ public class ProdutoDAO {
             stmt.setInt(3, produto.getQuantidade());
             stmt.execute();
         } catch(Exception e) {
-            System.err.println("Erro na função insert: " + e.toString());
+            System.err.println("Erro no Adicionar Produto: " + e.toString());
         }
-    }
-    
-    public void update(){
-        
     }
     
     public static ArrayList<Produto> select(){
@@ -47,13 +43,26 @@ public class ProdutoDAO {
             
             return produtos;
         } catch(Exception e){
-            System.err.println("Erro na Listagem de Produto: " + e.toString());
+            System.err.println("Erro no Listar Produto: " + e.toString());
         }
         
         return null;
     }
     
-    public void delete(){
+    public static void delete(int id){
+        String sql = "DELETE FROM produto WHERE id = ?";
+        
+        try{
+            Connection conexao = ConexaoDB.retornaConexao();
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.execute();
+        } catch(Exception e) {
+            System.err.println("Erro no Excluir Produto: " + e.toString());
+        }
+    }
+    
+    public void update(){
         
     }
 }

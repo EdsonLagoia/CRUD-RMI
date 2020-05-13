@@ -37,11 +37,11 @@ public class IniciarServidor {
             Data objetoData = new Data();
             Local objetoLocal = new Local();
             Veiculo objetoVeiculo = new Veiculo();
-            Naming.rebind("rmi://192.168.1.118:1099/Produto", objetoProduto);
-            Naming.rebind("rmi://192.168.1.118:1099/Hora", objetoHora);
-            Naming.rebind("rmi://192.168.1.118:1099/Data", objetoData);
-            Naming.rebind("rmi://192.168.1.118:1099/Local", objetoLocal);
-            Naming.rebind("rmi://192.168.1.118:1099/Veiculo", objetoVeiculo);
+            Naming.rebind("rmi://192.168.1.136:1099/Produto", objetoProduto);
+            Naming.rebind("rmi://192.168.1.136:1099/Hora", objetoHora);
+            Naming.rebind("rmi://192.168.1.136:1099/Data", objetoData);
+            Naming.rebind("rmi://192.168.1.136:1099/Local", objetoLocal);
+            Naming.rebind("rmi://192.168.1.136:1099/Veiculo", objetoVeiculo);
         } catch(RemoteException re) {
             System.out.println("Erro Remoto: " +re.toString());
         } catch(Exception e){

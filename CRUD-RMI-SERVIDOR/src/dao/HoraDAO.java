@@ -17,12 +17,8 @@ public class HoraDAO {
             stmt.setInt(2, hora.getMinutos());
             stmt.execute();
         } catch(Exception e) {
-            System.out.println("Erro na função insert: " + e.toString());
+            System.err.println("Erro no Adicionar Produto: " + e.toString());
         }
-    }
-    
-    public void update(){
-        
     }
     
     public static ArrayList<Hora> select(){
@@ -45,14 +41,26 @@ public class HoraDAO {
             
             return horas;
         } catch(Exception e){
-            System.err.println("Erro na Listagem de Hora: " + e.toString());
+            System.err.println("Erro no Listar Hora: " + e.toString());
         }
         
         return null;
     }
 
+    public static void delete(int id){
+        String sql = "DELETE FROM hora WHERE id = ?";
+        
+        try{
+            Connection conexao = ConexaoDB.retornaConexao();
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.execute();
+        } catch(Exception e) {
+            System.err.println("Erro no Excluir Hora: " + e.toString());
+        }
+    }
     
-    public void delete(){
+    public void update(){
         
     }
 }

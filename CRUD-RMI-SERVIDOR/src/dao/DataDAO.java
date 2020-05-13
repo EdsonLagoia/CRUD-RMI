@@ -18,13 +18,8 @@ public class DataDAO {
             stmt.setInt(3, data.getAno());
             stmt.execute();
         } catch(Exception e) {
-            System.out.println("Erro na função insert: " + e.toString());
+            System.err.println("Erro no Adicionar Produto: " + e.toString());
         }
-    }
-    
-    
-    public void update(){
-        
     }
     
     public static ArrayList<Data> select(){
@@ -48,13 +43,26 @@ public class DataDAO {
             
             return datas;
         } catch(Exception e){
-            System.err.println("Erro na Listagem de Data: " + e.toString());
+            System.err.println("Erro no Listar Data: " + e.toString());
         }
         
         return null;
     }
     
-    public void delete(){
+    public static void delete(int id){
+        String sql = "DELETE FROM data WHERE id = ?";
+        
+        try{
+            Connection conexao = ConexaoDB.retornaConexao();
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.execute();
+        } catch(Exception e) {
+            System.err.println("Erro no Excluir Data: " + e.toString());
+        }
+    }
+    
+    public void update(){
         
     }
 }

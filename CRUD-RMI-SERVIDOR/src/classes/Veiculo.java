@@ -7,6 +7,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 public class Veiculo extends UnicastRemoteObject implements InterfaceVeiculo {
+    private int id;
     private String marca;
     private String modelo;
     private String placa;
@@ -15,6 +16,11 @@ public class Veiculo extends UnicastRemoteObject implements InterfaceVeiculo {
         System.out.println("A classe Veiculo está disponível remotamente");
     }
 
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     @Override
     public void setMarca(String marca) {
         this.marca = marca;
@@ -28,6 +34,11 @@ public class Veiculo extends UnicastRemoteObject implements InterfaceVeiculo {
     @Override
     public void setPlaca(String placa) {
         this.placa = placa;
+    }
+    
+    @Override
+    public int getId() {
+        return id;
     }
 
     @Override
@@ -53,5 +64,10 @@ public class Veiculo extends UnicastRemoteObject implements InterfaceVeiculo {
     @Override
     public ArrayList<Veiculo> select() {
         return VeiculoDAO.select();
+    }
+    
+    @Override
+    public void delete(int id){
+        VeiculoDAO.delete(id);
     }
 }

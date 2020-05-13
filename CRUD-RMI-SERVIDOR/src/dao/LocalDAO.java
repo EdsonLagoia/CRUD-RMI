@@ -17,12 +17,8 @@ public class LocalDAO {
             stmt.setString(2, local.getEndereco());
             stmt.execute();
         } catch(Exception e) {
-            System.out.println("Erro na função insert: " + e.toString());
+            System.err.println("Erro no Adicionar Local: " + e.toString());
         }
-    }
-    
-    public void update(){
-        
     }
     
     public static ArrayList<Local> select(){
@@ -45,13 +41,26 @@ public class LocalDAO {
             
             return locais;
         } catch(Exception e){
-            System.err.println("Erro na Listagem de Local: " + e.toString());
+            System.err.println("Erro no Listar Local: " + e.toString());
         }
         
         return null;
     }
     
-    public void delete(){
+    public static void delete(int id){
+        String sql = "DELETE FROM local WHERE id = ?";
+        
+        try{
+            Connection conexao = ConexaoDB.retornaConexao();
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.execute();
+        } catch(Exception e) {
+            System.err.println("Erro no Excluir Local: " + e.toString());
+        }
+    }
+    
+    public void update(){
         
     }
 }

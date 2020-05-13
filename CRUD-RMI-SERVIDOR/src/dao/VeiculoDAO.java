@@ -18,12 +18,8 @@ public class VeiculoDAO {
             stmt.setString(3, veiculo.getPlaca());
             stmt.execute();
         } catch(Exception e) {
-            System.out.println("Erro na função insert: " + e.toString());
+            System.err.println("Erro no Adicionar Veiculo: " + e.toString());
         }
-    }
-    
-    public void update(){
-        
     }
     
     public static ArrayList<Veiculo> select(){
@@ -47,13 +43,26 @@ public class VeiculoDAO {
             
             return veiculos;
         } catch(Exception e){
-            System.err.println("Erro na Listagem de Veiculo: " + e.toString());
+            System.err.println("Erro no Listar Veiculo: " + e.toString());
         }
         
         return null;
     }
     
-    public void delete(){
+    public static void delete(int id){
+        String sql = "DELETE FROM veiculo WHERE id = ?";
+        
+        try{
+            Connection conexao = ConexaoDB.retornaConexao();
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.execute();
+        } catch(Exception e) {
+            System.err.println("Erro no Excluir Veiculo: " + e.toString());
+        }
+    }
+    
+    public void update(){
         
     }
 }
