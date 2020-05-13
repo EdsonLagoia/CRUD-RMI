@@ -46,7 +46,7 @@ public class adicionarLocal extends JPanel implements ActionListener {
         
         try {
             InterfaceLocal localRemoto;
-            localRemoto = (InterfaceLocal) Naming.lookup("rmi://192.168.1.118:1099/Local");
+            localRemoto = (InterfaceLocal) Naming.lookup("rmi://192.168.1.136:1099/Local");
             
             localRemoto.setCliente(cliente);
             localRemoto.setEndereco(endereco);

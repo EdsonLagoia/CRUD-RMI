@@ -52,8 +52,7 @@ public class adicionarProduto extends JPanel implements ActionListener {
         int quantidade = Integer.parseInt(string_quantidade);
         
         try {
-            InterfaceProduto produtoRemoto;
-            produtoRemoto = (InterfaceProduto) Naming.lookup("rmi://192.168.1.118:1099/Produto");
+            InterfaceProduto produtoRemoto = (InterfaceProduto) Naming.lookup("rmi://192.168.1.136:1099/Produto");
             
             produtoRemoto.setDescricao(descricao);
             produtoRemoto.setPreco(preco);
@@ -61,11 +60,6 @@ public class adicionarProduto extends JPanel implements ActionListener {
             
             produtoRemoto.insert();
             
-            String texto_retorno = "\n Descrição: " + produtoRemoto.getDescricao()
-                    + "\n Preço: " + produtoRemoto.getPreco()
-                    + "\n Quantidade: " + produtoRemoto.getQuantidade();
-            
-            JOptionPane.showMessageDialog(null, texto_retorno, "Dados do Produto", JOptionPane.INFORMATION_MESSAGE);
         } catch(RemoteException re) {
             JOptionPane.showMessageDialog(null, "Erro Remoto:" + re.toString(), "Erro Remoto", JOptionPane.WARNING_MESSAGE);
         } catch (NotBoundException ex) {

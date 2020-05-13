@@ -53,7 +53,7 @@ public class adicionarData extends JPanel implements ActionListener {
         
         try {
             InterfaceData dataRemoto;
-            dataRemoto = (InterfaceData) Naming.lookup("rmi://192.168.1.118:1099/Data");
+            dataRemoto = (InterfaceData) Naming.lookup("rmi://192.168.1.136:1099/Data");
             
             dataRemoto.setDia(dia);
             dataRemoto.setMes(mes);

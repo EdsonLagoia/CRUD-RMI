@@ -46,7 +46,7 @@ public class adicionarHora extends JPanel implements ActionListener {
         
         try {
             InterfaceHora horaRemoto;
-            horaRemoto = (InterfaceHora) Naming.lookup("rmi://192.168.1.118:1099/Hora");
+            horaRemoto = (InterfaceHora) Naming.lookup("rmi://192.168.1.136:1099/Hora");
             
             horaRemoto.setHoras(horas);
             horaRemoto.setMinutos(minutos);

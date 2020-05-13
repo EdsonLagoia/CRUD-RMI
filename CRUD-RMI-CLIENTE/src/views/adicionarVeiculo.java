@@ -53,7 +53,7 @@ public class adicionarVeiculo extends JPanel implements ActionListener {
         
         try {
             InterfaceVeiculo veiculoRemoto;
-            veiculoRemoto = (InterfaceVeiculo) Naming.lookup("rmi://192.168.1.118:1099/Veiculo");
+            veiculoRemoto = (InterfaceVeiculo) Naming.lookup("rmi://192.168.1.136:1099/Veiculo");
             
             veiculoRemoto.setMarca(marca);
             veiculoRemoto.setModelo(modelo);
